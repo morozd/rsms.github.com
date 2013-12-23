@@ -37,6 +37,10 @@
     {% endif %}
     {% if page.og_image_url %}
     <meta property="og:image" content="{{ page.og_image_url }}">
+    {% else %}
+    {% if page.photo_url %}
+    <meta property="og:image" content="{{ page.photo_url }}">
+    {% endif %}
     {% endif %}
     <meta property="og:url" content="http://rsms.me{{ page.url | remove_first:'index.html' }}">
     <meta property="og:site_name" content="rsms.me">
@@ -53,7 +57,7 @@
     {% endif %}
   </head>
   <body{% if page.wide_layout %} class="wide"{% endif %}>
-    <script>
+    <!--script>/*
       var s;
       if (document.location.hostname === 'rsms.me') {
         s = document.createElement('script');
@@ -69,8 +73,8 @@
         document.documentElement.className = 'ios iphone';
         window.rsmsHostIsIOS = 'iphone';
       }
-    </script>
-    <div id="fb-root"></div><script></script>
+    */</script>
+    <div id="fb-root"></div><script></script-->
     <iframe id="sidebar"></iframe>
     <header>
       <h1 class="logo" onclick="document.location.href='/';"><a href="/"><img src="/res/signature-2-2.png" width="160" height="50" alt="Signature"></a></h1>
@@ -85,12 +89,12 @@
       {{ content }}
     <!--/div-->
     
-    {% unless page.disqus_comments %}
-    <div class="content sub">
+    {% if page.fb_comments or page.comments %}
+    <!--div class="content sub">
       <h2 id="comments">Comments</h2>
       <div class="fb-comments" data-href="http://rsms.me{{ page.url }}" data-num-posts="{{ page.fb_comments }}" data-width="550" data-font="arial"></div>
-    </div>
-    {% endunless %}
+    </div-->
+    {% endif %}
     
     {% if paginator.page %}
     <div id="paginator" class="content">
